@@ -87,10 +87,34 @@ def sanitize_email(email_data: dict[str, Any]) -> dict[str, Any]:
     sender_tier = classify_sender(sender_clean)
     summary_level = "full" if sender_tier == "known" else "minimal"
 
-    # For unknown senders, truncate body to 1 line preview
+    # For unknown senders, provide a 3-line triage summary
+    # Line 1: sender email + name if available
+    # Line 2: subject + first sentence of body
+    # Line 3: flag count + action hint
     if summary_level == "minimal":
-        first_line = body_clean.split("\n")[0][:200] if body_clean else ""
-        body_output = first_line
+        first_sentence = ""
+        if body_clean:
+            # Grab first sentence (up to period, question mark, or 150 chars)
+            for i, ch in enumerate(body_clean[:150]):
+                if ch in ".?!" and i > 10:
+                    first_sentence = body_clean[: i + 1].replace("\n", " ").strip()
+                    break
+            if not first_sentence:
+                first_sentence = body_clean[:150].replace("\n", " ").strip()
+                if len(body_clean) > 150:
+                    first_sentence += "..."
+
+        flag_count = len(all_flags)
+        if flag_count > 0:
+            action_hint = f"{flag_count} flag(s) detected, review with caution"
+        else:
+            action_hint = "0 flags, may be legit"
+
+        body_output = (
+            f"From: {sender_clean}\n"
+            f"Re: \"{subject_clean}\" — {first_sentence}\n"
+            f"{action_hint}"
+        )
     else:
         body_output = body_clean
 

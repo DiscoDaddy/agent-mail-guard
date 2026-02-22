@@ -209,8 +209,12 @@ class TestCleanEmail:
         })
         assert result["sender_tier"] == "unknown"
         assert result["summary_level"] == "minimal"
-        # Minimal = first line only
-        assert "\n" not in result["body_clean"]
+        # Minimal = 3-line triage summary (From / Re / action hint)
+        lines = result["body_clean"].split("\n")
+        assert len(lines) == 3
+        assert lines[0].startswith("From:")
+        assert lines[1].startswith("Re:")
+        assert "flag" in lines[2]
 
 
 # ── Long email truncation ──────────────────────────────────────────
