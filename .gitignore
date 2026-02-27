@@ -6,3 +6,4 @@ contacts.json
 *.egg-info/
 dist/
 build/
+benchmarks
