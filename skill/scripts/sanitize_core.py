@@ -8,7 +8,7 @@ lives here.  Callers import individual functions.
 Python 3.11+ stdlib only.
 """
 
-__version__ = "1.4.0"
+__version__ = "1.3.0"
 
 import html
 import json
@@ -133,38 +133,6 @@ INJECTION_PATTERNS = [
     # Fake conversation / thread injection
     (re.compile(r"(?:^|\n)\s*(?:Human|User|Assistant)\s*:", re.I),
      "injection_pattern: 'fake conversation turn'"),
-
-    # Broader ignore/disregard/forget variants
-    (re.compile(r"ignore\s+(?:the\s+)?(?:original|above|any|all|last|following)\s+\w*\s*instruction", re.I),
-     "injection_pattern: 'ignore instructions variant'"),
-    (re.compile(r"forget\s+everything", re.I),
-     "injection_pattern: 'forget everything'"),
-    (re.compile(r"disregard\s+(?:the\s+|my\s+)?(?:last|previous|above)", re.I),
-     "injection_pattern: 'disregard variant'"),
-
-    # Roleplay / identity override
-    (re.compile(r"(?:pretend|act)\s+(?:as|like|you\s*(?:are|'re))", re.I),
-     "injection_pattern: 'role play attack'"),
-    (re.compile(r"you\s+are\s+now\b", re.I),
-     "injection_pattern: 'identity override'"),
-    (re.compile(r"from\s+now\s+on\s+you\s+(?:will|shall|must|are)", re.I),
-     "injection_pattern: 'behavioral override'"),
-    (re.compile(r"\bdo\s+anything\s+now\b", re.I),
-     "injection_pattern: 'DAN jailbreak'"),
-
-    # Hypothetical/scenario bypass
-    (re.compile(r"imagine\s+(?:you|that|a\s+scenario)", re.I),
-     "injection_pattern: 'hypothetical bypass'"),
-    (re.compile(r"hypothetical\s+scenario", re.I),
-     "injection_pattern: 'hypothetical bypass'"),
-    (re.compile(r"let'?s\s+play\s+a\s+game", re.I),
-     "injection_pattern: 'game framing bypass'"),
-
-    # Output manipulation
-    (re.compile(r"(?:repeat|say|print|output|write)\s+(?:after\s+me|the\s+following|exactly|only)", re.I),
-     "injection_pattern: 'output manipulation'"),
-    (re.compile(r"your\s+(?:first|next)\s+(?:word|response|output)\s+(?:should|must|will)\s+be", re.I),
-     "injection_pattern: 'output manipulation'"),
 ]
 
 # ---------------------------------------------------------------------------
@@ -424,12 +392,6 @@ SPACELESS_INJECTION_PATTERNS = [
      "injection_pattern: 'disregard instructions'"),
     (re.compile(r"forget\s*(?:your|all|previous)\s*(?:instructions?|context|rules)", re.I),
      "injection_pattern: 'forget instructions'"),
-    (re.compile(r"(?:pretend|act)\s*(?:as|like|you\s*(?:are|'re))", re.I),
-     "injection_pattern: 'role play attack'"),
-    (re.compile(r"you\s*are\s*now", re.I),
-     "injection_pattern: 'identity override'"),
-    (re.compile(r"from\s*now\s*on\s*you", re.I),
-     "injection_pattern: 'behavioral override'"),
 ]
 
 
