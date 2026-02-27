@@ -1,5 +1,0 @@
-{
-  "known_domains": ["yourcompany.com", "client.com"],
-  "known_emails": ["boss@yourcompany.com", "assistant@yourcompany.com"],
-  "trusted_senders": ["google.com", "shopify.com", "github.com", "linear.app"]
-}
