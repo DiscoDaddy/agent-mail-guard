@@ -7,7 +7,7 @@ description: >
   Use when your agent reads email, processes calendar events, or handles any untrusted text
   input that could contain injection attempts. Outputs clean JSON with sender trust tiers,
   suspicion flags, and truncated bodies safe for LLM consumption.
-version: 1.3.0
+version: 1.4.0
 metadata:
   openclaw:
     requires:

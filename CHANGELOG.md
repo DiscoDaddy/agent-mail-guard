@@ -2,6 +2,13 @@
 
 All notable changes to AgentMailGuard are documented here.
 
+## [1.4.0] — 2026-02-27
+
+### Added
+- 14 new injection detection patterns (roleplay, hypothetical, output manipulation, broader override variants)
+- 3 new spaceless patterns for obfuscation-resistant detection
+- Benchmarked against 17,980 samples: 98.7% precision, 19.2% recall, 32.1% F1
+
 ## [1.3.0] — 2026-02-22
 
 ### Changed

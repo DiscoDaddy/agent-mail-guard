@@ -21,4 +21,4 @@ What did it do instead?
 
 ## Python Version
 - Python: (e.g., 3.11.5)
-- AgentMailGuard version: (e.g., 1.3.0)
+- AgentMailGuard version: (e.g., 1.4.0)
